@@ -49,13 +49,13 @@ module.exports = {
     };
     const { typeOfProject, initializeGitRepo } = await ask([askTypeOfProject, askInitializeGitRepo]);
     const request: NewCommandRequest = { name, typeOfProject, initializeGitRepo };
-    const node_version = strings.trim(await system.run('node --version'));
-    info(`Node version ${node_version}`);
+    const NODE_VERSION = strings.trim(await system.run('node --version'));
+    info(`Node version ${NODE_VERSION}`);
     newline();
     const spinner = spin('Generating files and installing dependencies');
     // system.run(`mkdir ${name}`)
     // system.run(`touch ${name}/file.ts`)
-    if (request.typeOfProject == 'Typescript') {
+    if (request.typeOfProject === 'Typescript') {
       await system.run(`npx react-native init ${name} --template react-native-template-typescript`);
     } else {
       await system.run(`npx react-native init ${name}`);
