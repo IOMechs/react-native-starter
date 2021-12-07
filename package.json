@@ -1,25 +1,23 @@
 {
-  "name": "@lenne.tech/cli-starter",
+  "name": "react-native-starter",
   "version": "0.0.8",
   "description": "lenne.Tech CLI Starter",
   "keywords": [
-    "lenne.Tech",
-    "cli",
-    "starter"
+    "crna"
   ],
-  "author": "Pascal Klesse",
+  "author": "Fayyaz Ali Khan",
   "contributors": [
-    "Pascal Klesse",
+    "Fayyaz Ali Khan",
     "Kai Haase <kai.haase@lenne.tech> (http://lenne.tech)"
   ],
   "homepage": "https://lenne.tech",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lenneTech/cli-starter"
+    "url": "https://github.com/IOMechs/react-native-starter"
   },
   "bugs": {
-    "url": "https://github.com/lenneTech/cli-starter/issues"
+    "url": "https://github.com/IOMechs/react-native-starter/issues"
   },
   "bin": {
     "cli-starter": "bin/cli-starter"
