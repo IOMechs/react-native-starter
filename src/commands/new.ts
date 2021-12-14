@@ -1,5 +1,6 @@
 import { GluegunToolbox } from 'gluegun';
 import { GitHandler } from '../handlers/git-handler';
+import { FastlaneHandler } from '../handlers/fastlane-handler';
 export interface NewCommandRequest {
   name: string;
   typeOfProject: string;
@@ -13,15 +14,16 @@ module.exports = {
       filesystem,
       // meta,
       system,
-      strings,
+      // strings,
       parameters,
-      print: { error, info, success, spin, newline },
+      print: { error, success, spin },
       prompt: { ask }
     } = toolbox;
     // const { path } = filesystem;
     // const iomechsPath = path(`${meta.src}`, '../');
     let name = parameters.first;
     const gitHandler = new GitHandler(toolbox);
+    const fastlaneHandler = new FastlaneHandler(toolbox);
     if (!name) {
       const result = await ask({
         type: 'input',
@@ -47,9 +49,6 @@ module.exports = {
     };
     const { typeOfProject, initializeGitRepo } = await ask([askTypeOfProject, askInitializeGitRepo]);
     const request: NewCommandRequest = { name, typeOfProject, initializeGitRepo };
-    const NODE_VERSION = strings.trim(await system.run('node --version'));
-    info(`Node version ${NODE_VERSION}`);
-    newline();
     const spinner = spin('Generating files and installing dependencies');
     if (request.typeOfProject === 'Typescript') {
       await system.run(`npx react-native init ${name} --template react-native-template-typescript`);
@@ -58,15 +57,19 @@ module.exports = {
     }
     await gitHandler.handle(request);
     let packageJsonRaw = filesystem.read(`${name}/package.json`);
-    packageJsonRaw = packageJsonRaw.replace(/Hello/g, 'Project');
+    packageJsonRaw = packageJsonRaw.replace(/Hello/g, name);
     let packageJson = JSON.parse(packageJsonRaw);
     let packageBoilerRaw = filesystem.read(`packageBoiler.json`);
-    packageBoilerRaw = packageBoilerRaw.replace(/Hello/g, 'Project');
+    packageBoilerRaw = packageBoilerRaw.replace(/Hello/g, name);
     let packageBoiler = JSON.parse(packageBoilerRaw);
     const merge = require('deepmerge-json');
     packageJson = merge(packageJson, packageBoiler);
     filesystem.write(`./${name}/package.json`, packageJson);
-    await system.run(`cd ${name} && yarn`);
+    await system.run(`cd ${name} && mkdir fastlane && yarn`);
+    await fastlaneHandler.handle(request);
+    await system.run(`cd ${name} && mkdir src`);
+    await system.run(`cd ${name}/src && mkdir assets navigation modules hooks components constants core store styles`);
+
     spinner.stop();
     success(`
         Done! Generated new React Native project ${name}.
