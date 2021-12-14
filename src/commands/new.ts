@@ -11,16 +11,15 @@ module.exports = {
   run: async (toolbox: GluegunToolbox) => {
     const {
       filesystem,
-      meta,
+      // meta,
       system,
       strings,
       parameters,
       print: { error, info, success, spin, newline },
       prompt: { ask }
     } = toolbox;
-    const { path } = filesystem;
-    const iomechsPath = path(`${meta.src}`, '../');
-    console.log(iomechsPath);
+    // const { path } = filesystem;
+    // const iomechsPath = path(`${meta.src}`, '../');
     let name = parameters.first;
     const gitHandler = new GitHandler(toolbox);
     if (!name) {
@@ -41,7 +40,6 @@ module.exports = {
       message: 'What type of project do you want?',
       choices: ['Javascript', 'Typescript']
     };
-
     const askInitializeGitRepo = {
       type: 'confirm',
       name: 'initializeGitRepo',
@@ -53,17 +51,25 @@ module.exports = {
     info(`Node version ${NODE_VERSION}`);
     newline();
     const spinner = spin('Generating files and installing dependencies');
-    // system.run(`mkdir ${name}`)
-    // system.run(`touch ${name}/file.ts`)
     if (request.typeOfProject === 'Typescript') {
       await system.run(`npx react-native init ${name} --template react-native-template-typescript`);
     } else {
       await system.run(`npx react-native init ${name}`);
     }
     await gitHandler.handle(request);
+    let packageJsonRaw = filesystem.read(`${name}/package.json`);
+    packageJsonRaw = packageJsonRaw.replace(/Hello/g, 'Project');
+    let packageJson = JSON.parse(packageJsonRaw);
+    let packageBoilerRaw = filesystem.read(`packageBoiler.json`);
+    packageBoilerRaw = packageBoilerRaw.replace(/Hello/g, 'Project');
+    let packageBoiler = JSON.parse(packageBoilerRaw);
+    const merge = require('deepmerge-json');
+    packageJson = merge(packageJson, packageBoiler);
+    filesystem.write(`./${name}/package.json`, packageJson);
+    await system.run(`cd ${name} && yarn`);
     spinner.stop();
     success(`
-        Done! Generated new React Native TypeScript project ${name}.
+        Done! Generated new React Native project ${name}.
 
         Next:
           $ cd ${name}

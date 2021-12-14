@@ -1,3 +1,3 @@
-# Command Reference for cli-starter
+# Command Reference for crna
 
 TODO: Add your command reference here

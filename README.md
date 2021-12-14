@@ -4,11 +4,11 @@ A CLI Starter for your next [Gluegun](https://infinitered.github.io/gluegun/#/) 
 
 ![Gluegun Menu Demo](assets/demo.gif)
 
-[![License](https://img.shields.io/github/license/lenneTech/cli-starter)](/LICENSE) [![CircleCI](https://circleci.com/gh/lenneTech/cli-starter/tree/master.svg?style=shield)](https://circleci.com/gh/lenneTech/cli-starter/tree/master)
-[![Dependency Status](https://david-dm.org/lenneTech/cli-starter.svg)](https://david-dm.org/lenneTech/cli-starter) [![devDependency Status](https://david-dm.org/lenneTech/cli-starter/dev-status.svg)](https://david-dm.org/lenneTech/cli-starter?type=dev)
+[![License](https://img.shields.io/github/license/lenneTech/crna)](/LICENSE) [![CircleCI](https://circleci.com/gh/lenneTech/crna/tree/master.svg?style=shield)](https://circleci.com/gh/lenneTech/crna/tree/master)
+[![Dependency Status](https://david-dm.org/lenneTech/crna.svg)](https://david-dm.org/lenneTech/crna) [![devDependency Status](https://david-dm.org/lenneTech/crna/dev-status.svg)](https://david-dm.org/lenneTech/crna?type=dev)
 
 <!--
-[![GitHub forks](https://img.shields.io/github/forks/lenneTech/cli-starter)](https://github.com/lenneTech/cli-starter/fork) [![GitHub stars](https://img.shields.io/github/stars/lenneTech/cli-starter)](https://github.com/lenneTech/cli-starter)
+[![GitHub forks](https://img.shields.io/github/forks/lenneTech/crna)](https://github.com/lenneTech/crna/fork) [![GitHub stars](https://img.shields.io/github/stars/lenneTech/crna)](https://github.com/lenneTech/crna)
 -->
 
 ## Initialize CLI
@@ -23,7 +23,7 @@ $ lt cli create <CLI_NAME>
 Via GitHub:
 
 ```shell
-$ git clone https://github.com/lenneTech/cli-starter.git <CLI_NAME>
+$ git clone https://github.com/lenneTech/crna.git <CLI_NAME>
 $ cd <CLI_NAME>
 $ npm i
 $ npm run rename <CLI_NAME>
@@ -31,7 +31,7 @@ $ npm run rename <CLI_NAME>
 
 Via ZIP:
 
-1. Download Starter: https://github.com/lenneTech/cli-starter/archive/master.zip
+1. Download Starter: https://github.com/lenneTech/crna/archive/master.zip
 2. Unpack ZIP
 3. Run `npm i && npm run rename <CLI_NAME>` in project directory
 

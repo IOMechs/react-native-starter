@@ -8,9 +8,9 @@ async function run(argv) {
   try {
     // Create a CLI runtime
     const cli = build()
-      .brand('cli-starter')
+      .brand('crna')
       .src(__dirname)
-      // .plugins('./node_modules', { matching: 'cli-starter-*', hidden: true })
+      // .plugins('./node_modules', { matching: 'crna-*', hidden: true })
       .plugin(join(__dirname, '..', 'node_modules', '@lenne.tech', 'cli-plugin-helper', 'dist'), {
         commandFilePattern: ['*.js'],
         extensionFilePattern: ['*.js']

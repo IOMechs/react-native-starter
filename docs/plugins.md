@@ -1,10 +1,10 @@
-# Plugin guide for cli-starter
+# Plugin guide for crna
 
-Plugins allow you to add features to cli-starter, such as commands and
+Plugins allow you to add features to crna, such as commands and
 extensions to the `toolbox` object that provides the majority of the functionality
-used by cli-starter.
+used by crna.
 
-Creating a cli-starter plugin is easy. Just create a repo with two folders:
+Creating a crna plugin is easy. Just create a repo with two folders:
 
 ```
 commands/
@@ -18,12 +18,12 @@ A command is a file that looks something like this:
 
 module.exports = {
   run: (toolbox) => {
-    const { print, filesystem } = toolbox
+    const { print, filesystem } = toolbox;
 
-    const desktopDirectories = filesystem.subdirectories(`~/Desktop`)
-    print.info(desktopDirectories)
+    const desktopDirectories = filesystem.subdirectories(`~/Desktop`);
+    print.info(desktopDirectories);
   }
-}
+};
 ```
 
 An extension lets you add additional features to the `toolbox`.
@@ -32,16 +32,18 @@ An extension lets you add additional features to the `toolbox`.
 // extensions/bar-extension.js
 
 module.exports = (toolbox) => {
-  const { print } = toolbox
+  const { print } = toolbox;
 
-  toolbox.bar = () => { print.info('Bar!') }
-}
+  toolbox.bar = () => {
+    print.info('Bar!');
+  };
+};
 ```
 
 This is then accessible in your plugin's commands as `toolbox.bar`.
 
 # Loading a plugin
 
-To load a particular plugin (which has to start with `cli-starter-*`),
-install it to your project using `npm install --save-dev cli-starter-PLUGINNAME`,
-and cli-starter will pick it up automatically.
+To load a particular plugin (which has to start with `crna-*`),
+install it to your project using `npm install --save-dev crna-PLUGINNAME`,
+and crna will pick it up automatically.

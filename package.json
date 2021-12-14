@@ -20,7 +20,7 @@
     "url": "https://github.com/IOMechs/react-native-starter/issues"
   },
   "bin": {
-    "cli-starter": "bin/cli-starter"
+    "crna": "bin/crna"
   },
   "scripts": {
     "build": "npm run lint && npm run test && npm run clean-build && npm run compile && npm run copy-templates",
@@ -34,9 +34,9 @@
     "preversion": "npm run lint",
     "rename": "ts-node extras/rename/rename.ts",
     "snapupdate": "jest --updateSnapshot",
-    "start": "node bin/cli-starter",
-    "start:build": "npm run build && node bin/cli-starter --compiled-build",
-    "start:compiled": "node bin/cli-starter --compiled-build",
+    "start": "node bin/crna",
+    "start:build": "npm run build && node bin/crna --compiled-build",
+    "start:compiled": "node bin/crna --compiled-build",
     "test": "jest --testTimeout=60000",
     "watch": "jest --watch"
   },
@@ -51,6 +51,7 @@
   ],
   "dependencies": {
     "@lenne.tech/cli-plugin-helper": "0.0.8",
+    "deepmerge-json": "^1.2.0",
     "gluegun": "4.1.2",
     "ts-node": "8.5.4",
     "typescript": "3.7.4"
